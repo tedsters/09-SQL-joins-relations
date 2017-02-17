@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO: Do not forget to go into your SQL shell and DROP TABLE the existing articles/authors tables. Be sure to start clean.
+// DONE: Do not forget to go into your SQL shell and DROP TABLE the existing articles/authors tables. Be sure to start clean.
 const pg = require('pg');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -111,7 +111,8 @@ app.post('/articles', function(request, response) {
       ], // DONE: Add the data from our new article, including the author_id, as data for the SQL query.
       function(err) {
         if (err) console.error(err);
-        // TODO: What number in the full-stack diagram best matches what is happening in line 114?
+        // DONE: What number in the full-stack diagram best matches what is happening in line 114?
+        // #5 is going to be the matche because you are getting a response back from the server to see what the status is.
         response.send('insert complete');
       }
     );
@@ -168,11 +169,12 @@ app.delete('/articles/:id', function(request, response) {
     // Number 3 because you are querying the data from the database
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
-    // TODO: What does the value in 'request.params.id' come from? If unsure, look in the Express docs.
-    // Put your response here...
+    // DONE: What does the value in 'request.params.id' come from? If unsure, look in the Express docs.
+    // It is the parameteres that the user requests to delete.
     [request.params.id]
   );
-  // TODO: What number in the full-stack diagram best matches what is happening in line 171?
+  // DONE: What number in the full-stack diagram best matches what is happening in line 171?
+  // Number 5 or response.
   response.send('Delete complete');
 });
 
@@ -187,4 +189,4 @@ app.listen(PORT, function() {
   console.log(`Server started on port ${PORT}!`);
 });
 
-// TODO: Make your own drawing of the full-stack diagram on a blank piece of paper (there is a stack of paper on the table next to the door into our classroom) and submit to the TA who grades your lab assignments. This is for just a little extra reinforcement of how everything works.
+// DONE: Make your own drawing of the full-stack diagram on a blank piece of paper (there is a stack of paper on the table next to the door into our classroom) and submit to the TA who grades your lab assignments. This is for just a little extra reinforcement of how everything works.
